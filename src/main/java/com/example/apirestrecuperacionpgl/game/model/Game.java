@@ -1,0 +1,23 @@
+package com.example.apirestrecuperacionpgl.game.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
+
+@Entity
+@Data
+public class Game {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idGame;
+
+    private String fechaEntrada;
+    private String fechaSalida;
+    private double valor;
+    private String formaPago;
+
+
+}
