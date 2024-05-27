@@ -1,6 +1,7 @@
 package com.example.apirestrecuperacionpgl.user.model;
 
 import com.example.apirestrecuperacionpgl.game.model.Game;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -21,10 +23,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUser;
 
-    private String nombre;
-    private String telefono;
-    private String fotoPerfil;
+    private String email;
+    private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Game> games;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_game",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_id")
+    )
+    @JsonIgnore//PARA EVITAR LA SERIALIZACION INFINITA
+    private Set<Game> games;
 }

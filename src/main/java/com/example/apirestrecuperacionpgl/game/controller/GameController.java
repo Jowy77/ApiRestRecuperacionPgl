@@ -19,12 +19,7 @@ public class GameController {
 
     @GetMapping
     public List<Game> getAllGames() {
-        return gameService.getAllUsers();
-    }
-
-    @GetMapping("/filter")
-    public List<Game> getAllGamesByFechaEntradaOrFechaSalida(@RequestParam(value = "fecha_entrada", required = false) String fechaEntrada, @RequestParam(value = "fecha_salida", required = false) String fechaSalida) {
-        return gameService.getGamesByFechaEntradaOrFechaSalida(fechaEntrada,fechaSalida);
+        return gameService.getAllGames();
     }
 
     @GetMapping("{id}")
@@ -33,7 +28,8 @@ public class GameController {
     }
 
 
-    @PostMapping
+
+    @PostMapping("/create")
     public Game create(@RequestBody Game game) {
         return gameService.createGame(game);
     }
@@ -43,10 +39,5 @@ public class GameController {
     public Game update(@RequestBody Game game, @PathVariable Long id) {
         game.setIdGame(id);
         return gameService.updateGame(game);
-    }
-
-    @DeleteMapping("delete/{id}")
-    public void eliminar(@PathVariable Long id) {
-        gameService.deleteGameById(id);
     }
 }

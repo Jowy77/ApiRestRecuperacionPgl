@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    List<User> findByNombreIgnoreCaseOrTelefono(String nombre, String telefono);
+    List<User> findByEmailAndPassword(String email, String password);
 
     User findUserByGames(Game game);
 }

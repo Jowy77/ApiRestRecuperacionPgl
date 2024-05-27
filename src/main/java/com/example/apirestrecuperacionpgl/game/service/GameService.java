@@ -7,18 +7,11 @@ import java.util.Optional;
 
 public interface GameService {
 
-    List<Game> getAllUsers();
-
-    List<Game> getGamesByFechaEntradaOrFechaSalida(String fechaEntrada, String fechaSalida);
+    List<Game> getAllGames();
 
     Optional<Game> getGameById(Long id);
 
-
     Game createGame(Game game);
 
-
     Game updateGame(Game game);
-
-
-    void deleteGameById(Long id);
 }

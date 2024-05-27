@@ -1,10 +1,12 @@
 package com.example.apirestrecuperacionpgl.game.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.apirestrecuperacionpgl.user.model.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -14,10 +16,13 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idGame;
 
-    private String fechaEntrada;
+    private String nombreJuego;
     private String fechaSalida;
-    private double valor;
-    private String formaPago;
+    private String valoracionPersonal;
+    private String caratula;
 
+    @ManyToMany(mappedBy = "games")
+    @JsonIgnore //PARA EVITAR LA SERIALIZACIO INFINITA
+    private Set<User> users;
 
 }

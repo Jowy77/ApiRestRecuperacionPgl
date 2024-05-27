@@ -23,15 +23,9 @@ public class GameServiceImpl implements GameService {
 
     private final UserService userService;
 
-    public List<Game> getAllUsers() {
-        log.info("get reservas");
+    public List<Game> getAllGames() {
+        log.info("get games");
         return gameRepository.findAll();
-    }
-
-    @Override
-    public List<Game> getGamesByFechaEntradaOrFechaSalida(String fechaEntrada, String fechaSalida) {
-        log.info("get ReservasByFechaEntradaOrFechaSalida");
-        return gameRepository.findByfechaEntradaOrFechaSalida(fechaEntrada,fechaSalida);
     }
 
 
@@ -50,11 +44,5 @@ public class GameServiceImpl implements GameService {
     public Game updateGame(Game game) {
         log.info("update game");
         return gameRepository.save(game);
-    }
-
-
-    public void deleteGameById(Long id) {
-        log.info("delete game by id: {}", id);
-        userService.desvincularGame(id);
     }
 }
